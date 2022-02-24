@@ -3,7 +3,7 @@
 // name: string 
 // avatar: url 
 // selected: boolean - displays name and adds styles if selected
-// setInterviewer(id) - sets selected interviewer
+// setInterviewer(id) - returned value calculated in List, passed down here
 import React from "react";
 import classNames from "classnames"
 import "components/InterviewerListItem.scss";
@@ -21,7 +21,7 @@ export default function InterviewerListItem(props) {
   }
 
   return (
-    <li className={entryClass} onClick={() => props.setInterviewer(props.id)}>
+    <li className={entryClass} onClick={props.setInterviewer}>
       <img
         className="interviewers__item-image"
         src={props.avatar}

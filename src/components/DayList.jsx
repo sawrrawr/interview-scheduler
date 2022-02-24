@@ -5,14 +5,13 @@
 
 import React from 'react'
 import DayListItem from 'components/DayListItem';
-import { tsPropertySignature } from '@babel/types';
 
 export default function DayList(props) {
   const days = props.days
   const listOfDays = days.map((day) => 
 
     <li>
-    <DayListItem  key={day.key} name={day.name} spots={day.spots} selected={day.name === props.name} setDay={props.setDay}/>
+    <DayListItem  key={day.key} name={day.name} spots={day.spots} selected={day.name === props.value} setDay={() => props.onChange(day.name)}/>
     </li>
   );
 
