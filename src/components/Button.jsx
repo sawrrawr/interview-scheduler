@@ -2,7 +2,6 @@ import React from "react";
 import classNames from "classnames";
 
 import "components/Button.scss";
-import { tsPropertySignature } from "@babel/types";
 
 export default function Button(props) {
    const buttonClass = classNames("button", {

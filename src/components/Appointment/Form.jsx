@@ -14,6 +14,31 @@ const cancel = () => {
   reset()
   props.onCancel()
 }
+
+// function save(name, interviewer) {
+//   const interview = {
+//     student: name,
+//     interviewer
+//   };
+//   props.bookInterview(name, interviewer)
+//   transition(SHOW)
+// }
+
+// function bookInterview(id, interview) {
+//   console.log(id, interview);
+//   const appointment = {
+//     ...state.appointments[id],
+//     interview: { ...interview }
+//   };
+//   const appointments = {
+//     ...state.appointments,
+//     [id]: appointment
+//   };
+//   setState({
+//     ...state,
+//     appointments
+//   });
+// }
   return(
     <main className="appointment__card appointment__card--create">
       <section className="appointment__card-left">
@@ -36,7 +61,7 @@ const cancel = () => {
       <section className="appointment__card-right">
         <section className="appointment__actions">
           <Button danger onClick={cancel}>Cancel</Button>
-          <Button confirm onClick={props.onSave}>Save</Button>
+          <Button confirm onClick={props.onSave(student, interviewer)}>Save</Button>
         </section>
       </section>
     </main>
