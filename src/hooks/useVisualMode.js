@@ -6,9 +6,6 @@ const useVisualMode = initialMode => {
   const [history, setHistory] = useState([initialMode]);
 
   const transition = (mode, replace = false) => {
-    console.log(`history before func: `, history)
-    console.log(`mode before func: `, mode)
-    console.log(typeof mode)
     setHistory(prev =>
       replace ? [...prev.slice(0, -1), mode] : [...prev, mode]
     );
@@ -17,7 +14,6 @@ const useVisualMode = initialMode => {
   };
 
   const back = () => {
-    console.log(`we're inside the back function!`)
     setHistory(prev => (prev.length > 1 ? prev.slice(0, -1) : prev));
   };
 

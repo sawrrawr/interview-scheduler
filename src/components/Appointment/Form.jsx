@@ -15,12 +15,18 @@ const cancel = () => {
   props.onCancel()
 }
 
+const save = () => {
+  console.log(`save function taking student state: `, student)
+  console.log(`save func taking interviewer: `, interviewer)
+  props.onSave(student, interviewer)
+}
+
 // function save(name, interviewer) {
 //   const interview = {
 //     student: name,
 //     interviewer
 //   };
-//   props.bookInterview(name, interviewer)
+//   props.bookInterview(id, interviewer)
 //   transition(SHOW)
 // }
 
@@ -61,7 +67,7 @@ const cancel = () => {
       <section className="appointment__card-right">
         <section className="appointment__actions">
           <Button danger onClick={cancel}>Cancel</Button>
-          <Button confirm onClick={props.onSave(student, interviewer)}>Save</Button>
+          <Button confirm onClick={save}>Save</Button>
         </section>
       </section>
     </main>

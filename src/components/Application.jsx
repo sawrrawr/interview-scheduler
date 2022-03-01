@@ -70,7 +70,7 @@ export default function Application(props) {
   }, [])
 
   function bookInterview(id, interview) {
-    console.log(id, interview);
+    console.log(`passed into bookInterview: `, id, interview);
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview }
@@ -79,6 +79,22 @@ export default function Application(props) {
       ...state.appointments,
       [id]: appointment
     };
+    console.log(`appointments made in bookInterview func: `, appointments)
+    setState({
+      ...state,
+      appointments
+    });
+  }
+  function cancelInterview(id) {
+    const appointment = {
+      ...state.appointments[id],
+      interview: null
+    };
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+    console.log(`appointments var made in cancelInterview func: `, appointments)
     setState({
       ...state,
       appointments
@@ -91,6 +107,7 @@ export default function Application(props) {
     return (
       <Appointment 
       bookInterview={bookInterview}
+      cancelInterview={cancelInterview}
       interview={interview}
       key={appointment.id} 
       interviewers={dailyInterviewers} 
