@@ -53,10 +53,11 @@ function getInterviewersForDay(state, day) {
   const interviewersIDArray = selectDay.interviewers
   let interviewersArray = [];
   for (const id of interviewersIDArray) {
-  if (id === state.interviewers[`${id}`].id) {
-    interviewersArray.push(state.interviewers[`${id}`])
+    if (id === state.interviewers[`${id}`].id) {
+      interviewersArray.push(state.interviewers[`${id}`])
+    }
   }
-  }
+// console.log(`interviewer array: `, interviewersArray)
     return interviewersArray;
   };
 

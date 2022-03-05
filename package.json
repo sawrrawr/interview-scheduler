@@ -12,6 +12,7 @@
     "react-hooks-testing-library": "^0.6.0",
     "react-scripts": "3.0.0"
   },
+  "proxy": "http://localhost:8001",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -43,6 +44,7 @@
     "@testing-library/react": "^8.0.7",
     "babel-loader": "^8.0.5",
     "node-sass": "^4.14.0",
+    "prop-types": "^15.8.1",
     "react-test-renderer": "^16.9.0"
   },
   "jest": {
@@ -50,6 +52,5 @@
       "<rootDir>/node_modules/",
       "<rootDir>/.git/"
     ]
-  },
-  "proxy": "http://localhost:8001"
+  }
 }
