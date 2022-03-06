@@ -10,8 +10,8 @@ import "components/InterviewerListItem.scss";
 
 export default function InterviewerListItem(props) {
   const entryClass = classNames("interviewers__item", {
-      "interviewers__item--selected": props.selected 
-    }
+    "interviewers__item--selected": props.selected
+  }
   )
 
   const showName = () => {

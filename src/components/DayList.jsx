@@ -8,8 +8,8 @@ import DayListItem from 'components/DayListItem';
 
 export default function DayList(props) {
   const days = props.days
-  const listOfDays = days.map((day) => 
-    <DayListItem  key={day.id} name={day.name} spots={day.spots} selected={day.name === props.value} setDay={() => props.onChange(day.name)}/>
+  const listOfDays = days.map((day) =>
+    <DayListItem key={day.id} name={day.name} spots={day.spots} selected={day.name === props.value} setDay={() => props.onChange(day.name)} />
 
   );
 
@@ -17,7 +17,7 @@ export default function DayList(props) {
 
   return (
     <ul>
-    {listOfDays}
+      {listOfDays}
 
     </ul>
   )

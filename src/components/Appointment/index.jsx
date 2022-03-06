@@ -19,103 +19,100 @@ const ERROR_SAVE = "ERROR_SAVE";
 const ERROR_DELETE = "ERROR_DELETE";
 
 export default function Appointment(props) {
-  // props:
-  // key={appointment.id} 
-  // interview={interview}
-  // bookInterview={bookInterview}
-  // interviewers={dailyInterviewers} 
-  // {...appointment}
-  
-
-const {mode, transition, back} = useVisualMode(
-  props.interview ? SHOW : EMPTY
-)
-
-const text = () => {
-  return props.time ? props.time : "No Appointments"
-}
-//getting "student" state and "interviewer" state from Form component - submitting them with "Save" button
-function save(student, interviewer) {
-  const interviewObj = {
-    student,
-    interviewer
-  };
-  props.bookInterview(props.id, interviewObj)
-  .then(() => transition(SHOW))
-  .catch(() => transition(ERROR_SAVE, true))
-}
 
 
-const deleteTransition = () => {
-  props.cancelInterview(props.id)
-  .then(() => { 
-    transition(STATUS)
-    setTimeout(() => transition(EMPTY), 1000);
-  })
-  .catch(() => transition(ERROR_DELETE, true))
-}
 
+  const { mode, transition, back } = useVisualMode(
+    props.interview ? SHOW : EMPTY
+  )
 
-const interviewInfo = {...props.interview}
-const interviewerIDForShow = interviewInfo.interviewer
-const interviewerInfo = () => {
-  for (const person of props.interviewers) {
-    if (person.id === interviewerIDForShow)
-    return person
+  const text = () => {
+    return props.time ? props.time : "No Appointments"
   }
-}
-return (
-  <article className="appointment">
-    <Header time="" />
-    {text()}
-    {mode === EMPTY && <Empty onAdd={ () => transition(CREATE) } />}
-    {mode === SHOW && (
-      <Show
-        student={interviewInfo.student}
-        interviewer={interviewerInfo()}
-        onDelete={() => transition(CONFIRM)}
-        onEdit={() => transition(EDIT)}
-      />
-    )}
-    {mode === CREATE && 
-      <Form
-      interviewers={props.interviewers}
-      onSave={save}
-      onCancel={back}
-      />}
+
+  function save(student, interviewer) {
+    const interviewObj = {
+      student,
+      interviewer
+    };
+    props.bookInterview(props.id, interviewObj)
+      .then(() => transition(SHOW))
+      .catch(() => transition(ERROR_SAVE, true))
+  }
+
+
+  const deleteTransition = () => {
+    props.cancelInterview(props.id)
+      .then(() => {
+        transition(STATUS)
+        setTimeout(() => transition(EMPTY), 1000);
+      })
+      .catch(() => transition(ERROR_DELETE, true))
+  }
+
+
+  const interviewInfo = { ...props.interview }
+  const interviewerIDForShow = interviewInfo.interviewer
+  const interviewerInfo = () => {
+
+    for (const person of props.interviewers) {
+      if (person.id === interviewerIDForShow.id)
+        return person
+      console.log(person)
+    }
+  }
+  return (
+    <article className="appointment">
+      <Header time="" />
+      {text()}
+      {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
+      {mode === SHOW && (
+        <Show
+          student={interviewInfo.student}
+          interviewer={interviewerInfo()}
+          onDelete={() => transition(CONFIRM)}
+          onEdit={() => transition(EDIT)}
+        />
+      )}
+      {mode === CREATE &&
+        <Form
+          interviewers={props.interviewers}
+          onSave={save}
+          onCancel={back}
+        />}
       {mode === CONFIRM &&
-      <Confirm 
-      message="Are you sure you would like to delete?"
-      onCancel={back}
-      onConfirm={deleteTransition}
-      />}
-      {mode === STATUS && 
-      <Status 
-      message="Deleting"
-      />}
+        <Confirm
+          message="Are you sure you would like to delete?"
+          onCancel={back}
+          onConfirm={deleteTransition}
+        />}
+      {mode === STATUS &&
+        <Status
+          message="Deleting"
+        />}
       {mode === EDIT &&
-      <Form 
-      student={interviewInfo.student}
-      interviewers={props.interviewers}
-      interviewer={props.interviewers[interviewInfo.interviewer]}
-      onSave={save}
-      onCancel={back}
-      />
+        <Form
+          student={interviewInfo.student}
+          interviewers={props.interviewers}
+          interviewer={props.interviewers[interviewInfo.interviewer]}
+          onSave={save}
+          onCancel={back}
+        />
       }
       {mode === ERROR_SAVE &&
-      <Error
-      onClose={() => transition(SHOW)}
-      message="We could not complete your request, please try again later"
-       />
+        <Error
+          onClose={() => transition(SHOW)}
+          message="We could not complete your request, please try again later"
+        />
       }
       {mode === ERROR_DELETE &&
-       <Error
-       onClose={() => transition(SHOW, true)}
-       message="We could not complete your request, please try again later"
+        <Error
+          onClose={() => transition(SHOW, true)}
+          message="We could not complete your request, please try again later"
         />
       }
     </article>
- 
-)
+
+  )
 
 }
