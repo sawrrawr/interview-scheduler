@@ -4,11 +4,6 @@ import "components/InterviewerList.scss"
 import InterviewerListItem from "components/InterviewerListItem"
 import PropTypes from 'prop-types'
 
-// //props:
-// interviewers: array of interviewer entries/data
-// setInterviewer: function that takes in setInterviewer, to be passed down to InterviewerListItem 
-// interviewer: number, the id of the interviewer
-
 export default function InterviewerList(props) {
 
   InterviewerList.propTypes = {

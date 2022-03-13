@@ -9,7 +9,6 @@ export default function Button(props) {
       "button--danger": props.danger
    });
 
-   const eventHandler = props.action;
  
    return (
    <button 

@@ -1,9 +1,3 @@
-// props:
-// id: number 
-// name: string 
-// avatar: url 
-// selected: boolean - displays name and adds styles if selected
-// setInterviewer(id) - returned value calculated in List, passed down here
 import React from "react";
 import classNames from "classnames"
 import "components/InterviewerListItem.scss";
