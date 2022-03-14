@@ -31,9 +31,6 @@ function getInterview(state, interview) {
     "student": interview.student,
     "interviewer": interviewer
   }
-  // console.log(`this is state: `, state)
-  // console.log(`this is the interviewer's id: `, studentsInterviewer)
-  // console.log(`this is the new object: `, interviewObject.interviewer)
   return interviewObject
 }
 
